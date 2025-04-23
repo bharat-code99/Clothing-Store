@@ -1,6 +1,7 @@
 import { NavLink, Link } from 'react-router'
 import cartImg from '../assets/cart_icon.png'
 import { useNavigate } from 'react-router'
+import LoginSignup from '../pages/LoginSignup';
 
 const Navbar = () => {
 
@@ -19,9 +20,11 @@ const Navbar = () => {
         <NavLink to={'/kids'} className={({isActive}) => (isActive ? 'border-b-2 border-b-pink-500 -translate-y-1.5 duration-300 pb-1' : '')}>Kids</NavLink>
       </nav>
       <div className='flex gap-6 items-center'>
-        <Link to={'/login'}>
+        {/* <Link to={'/login'}>
           <button className='cursor-pointer py-2 px-4 border border-gray-500 rounded-xl'>Login</button>
-        </Link>
+        </Link> */}
+        <LoginSignup />
+
         <Link to={'/cart'}>
           <div className='relative'>
             <img src={cartImg} className='w-5'/>
