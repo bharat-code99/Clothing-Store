@@ -14,7 +14,16 @@ const Women = () => {
       <h1 className="my-8 text-4xl text-gray-800 font-bold">Women's Collection</h1>
       <div className='flex gap-8 flex-wrap justify-center'>
         {womenProducts.map((product) => {
-          return <Item key={product.id} name={product.name} image={product.image} new={product.new_price} old={product.old_price}/>
+          return (
+          <Item 
+            key={product.id} 
+            name={product.name} 
+            image={product.image} 
+            new={product.new_price} 
+            old={product.old_price}
+            id={product.id}
+          />
+          )
         })}
       </div>
     </div>

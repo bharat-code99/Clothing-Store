@@ -3,7 +3,7 @@ import { useState } from "react";
 const LoginSignup = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("bharat");
+  const [userName, setUserName] = useState("");
   const [showLoginPage, setShowLoginPage] = useState(false);
   const [formData, setFormData] = useState({
     id: '',
@@ -36,9 +36,13 @@ const LoginSignup = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       setIsLoggedIn(true);
+      setShowLoginPage(false);
       return response.json();
     })
-    .then(apiData => console.log(apiData))
+    .then(apiData => {
+      let firstName = apiData.user.USER_USER_NAME.split(" ")[0];
+      setUserName(firstName);
+    })
     .catch(error => console.error("Error: ", error));
   }
 
@@ -56,7 +60,7 @@ const LoginSignup = () => {
       <button onClick={() => setShowLoginPage(true)} className='cursor-pointer py-2 px-4 border border-gray-500 rounded-xl'>
         Login
       </button> : 
-      <p>Hi</p>
+      <p>Hi, {userName}</p>
       }
     </>
   )
