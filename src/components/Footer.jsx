@@ -24,7 +24,7 @@ const Footer = () => {
         <img src={pintImg}/>
         <img src={whatsImg}/>
       </div>
-      <div className='border border-gray-400 w-full'></div>
+      <div className='border border-gray-300 w-full'></div>
       <div>
         <p>Copyright @ 2025 - All Rights Reserved</p>
       </div>
