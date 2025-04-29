@@ -2,10 +2,13 @@ import { NavLink, Link } from 'react-router'
 import cartImg from '../assets/cart_icon.png'
 import { useNavigate } from 'react-router'
 import LoginSignup from '../pages/LoginSignup';
+import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
-
   const navigate = useNavigate();
+  const { cartItems } = useCart();
+
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return(
     <header className="flex justify-between items-center py-4 shadow-lg px-20">
@@ -28,7 +31,9 @@ const Navbar = () => {
         <Link to={'/cart'}>
           <div className='relative'>
             <img src={cartImg} className='w-5'/>
-            <span className='bg-pink-500 text-white rounded-full absolute -right-1/2 -top-1/2 px-1 text-xs'>0</span>
+            {totalItems > 0 && (
+              <span className='bg-pink-500 text-white rounded-full absolute -right-1/2 -top-1/2 px-1 text-xs'>{totalItems}</span>
+            )}
           </div>
         </Link>
       </div>

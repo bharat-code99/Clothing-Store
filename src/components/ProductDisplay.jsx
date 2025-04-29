@@ -1,14 +1,27 @@
 import React, { useState } from 'react'
 import brightStar from '../assets/star_icon.png'
 import dullStar from '../assets/star_dull_icon.png'
+import { useCart } from '../context/CartContext'
+import { useNotification } from '../context/NotificationContext'
 
 const ProductDisplay = (props) => {
 
   const {product} = props;
   const [selected, setSelected] = useState();
+  const { addToCart } = useCart();
+  const { showNotification } = useNotification();
 
   const handleSelected = (s) => {
     setSelected(s);
+  }
+
+  const handleAddToCart = () => {
+    if (!selected) {
+      showNotification('Please select a size');
+      return;
+    }
+    addToCart(product, selected);
+    showNotification(`${product.name} (Size: ${selected}) added to cart!`);
   }
 
   return (
@@ -45,7 +58,12 @@ const ProductDisplay = (props) => {
             <p onClick={() => handleSelected('XXL')} className={`p-1 border border-orange-400 rounded w-10 text-center ${selected === 'XXL' ? 'bg-orange-400 text-white' : 'text-orange-600'}`}>XXL</p>
           </div>
         </div>
-        <button className='self-start px-4 py-2 text-white font-bold bg-orange-300 border-2 rounded-xl border-orange-500 cursor-pointer'>Add To Cart</button>
+        <button 
+          onClick={handleAddToCart}
+          className='self-start px-4 py-2 text-white font-bold bg-orange-300 border-2 rounded-xl border-orange-500 cursor-pointer hover:bg-orange-400 transition-colors'
+        >
+          Add To Cart
+        </button>
       </div>
     </div>
   )

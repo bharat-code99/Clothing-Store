@@ -8,7 +8,7 @@ import Cart from "./pages/Cart.jsx";
 import Product from "./pages/Product.jsx";
 import LoginSignup from "./pages/LoginSignup.jsx";
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
@@ -44,3 +44,5 @@ export const router = createBrowserRouter([
     element: <LoginSignup />
   }
 ])
+
+export default router;
